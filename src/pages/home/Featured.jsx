@@ -25,7 +25,7 @@ const Featured = () => {
               </div>
               <div>
                 <h1 className="text-lg font-bold">{i.title}</h1>
-                <p className="text-slate-500">{i.description.length > 200 ? <p>{i.description.slice(0,180)}... <span><button className="font-bold">Read more</button></span></p> : i.description}</p>
+                <p className="text-slate-500">{i.description.length > 200 ? <p>{i.description.slice(0,180)}... <span><button className="font-bold">read more</button></span></p> : i.description}</p>
               </div>
             </div>
           </div>

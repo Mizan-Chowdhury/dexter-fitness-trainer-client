@@ -1,6 +1,7 @@
 import About from "./About";
 import Banner from "./Banner";
 import Featured from "./Featured";
+import FeaturedClasses from "./FeaturedClasses";
 
 const Home = () => {
   return (
@@ -13,6 +14,9 @@ const Home = () => {
       </div>
       <div>
         <About></About>
+      </div>
+      <div>
+        <FeaturedClasses></FeaturedClasses>
       </div>
     </div>
   );

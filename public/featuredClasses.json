@@ -1,0 +1,56 @@
+[
+  {
+    "id": "1",
+    "image": "https://i.ibb.co/fpzD3xT/pexels-andrea-piacquadio-3837454.jpg",
+    "title": "Core Ignition - Strengthen Your Center",
+    "description": "Ignite your core strength with our Core Ignition class! This dynamic online session is designed to target and sculpt your abdominal muscles, improve stability, and enhance overall core strength. Led by our experienced trainer, this class incorporates a mix of functional exercises, Pilates-inspired movements, and core-specific workouts to leave you feeling empowered and ready to conquer any fitness challenge.",
+    "duration": 45,
+    "intensity": "Moderate to High",
+    "equipment": "Exercise mat, light dumbbells (optional)"
+  },
+  {
+    "id": "2",
+    "image": "https://i.ibb.co/KFnzRRZ/image-27-481x374.jpg",
+    "title": "Mindful Flow Yoga - Unwind and Rejuvenate",
+    "description": "Join us for Mindful Flow Yoga, a rejuvenating online class that combines the benefits of yoga with a focus on mindfulness and relaxation. Led by our expert yoga instructor, this class is suitable for all levels. Flow through gentle poses, synchronize breath with movement, and leave each session feeling centered, calm, and ready to face the day with renewed energy.",
+    "duration": 60,
+    "intensity": "Low to Moderate",
+    "equipment": "Yoga mat, comfortable clothing"
+  },
+  {
+    "id": "3",
+    "image": "https://i.ibb.co/ZYZBm9t/img-2-570x270.jpg",
+    "title": "HIIT Inferno - Burn Fat, Boost Metabolism",
+    "description": "HIIT Inferno is a high-intensity interval training (HIIT) class designed to torch calories, increase endurance, and boost your metabolism. Our trainer will guide you through a series of short, intense bursts of exercise followed by brief rest periods. Get ready to sweat, push your limits, and experience the afterburn effect for continued calorie burn throughout the day.",
+    "duration": 30,
+    "intensity": "High",
+    "equipment": "None (bodyweight exercises)"
+  },
+  {
+    "id": "4",
+    "image": "https://i.ibb.co/4RR7pw7/image-4.jpg",
+    "title": "Strength Fusion - Total Body Transformation",
+    "description": "Experience a total body transformation with Strength Fusion, a class that combines strength training, functional movements, and flexibility exercises. Our expert instructor will guide you through a diverse range of exercises to target major muscle groups, enhance flexibility, and improve overall functional fitness. This class is suitable for all fitness levels.",
+    "duration": 40,
+    "intensity": "Moderate",
+    "equipment": "Dumbbells, resistance bands (optional)"
+  },
+  {
+    "id": "5",
+    "image": "https://i.ibb.co/9YWnhPp/image-6.jpg",
+    "title": "Dance Cardio Party - Groove and Sweat",
+    "description": "Get ready to dance your way to fitness with Dance Cardio Party! This high-energy online class features a combination of dance styles, cardio moves, and infectious music. Our energetic instructor will lead you through a fun and effective workout that not only burns calories but also boosts your mood. No dance experience required—just bring your enthusiasm!",
+    "duration": 45,
+    "intensity": "Moderate to High",
+    "equipment": "Comfortable dance/workout attire"
+  },
+  {
+    "id": "6",
+    "image": "https://i.ibb.co/5h6R44f/image-3.jpg",
+    "title": "Zen Mind Meditation - Cultivate Inner Peace",
+    "description": "Find tranquility and cultivate inner peace with Zen Mind Meditation. Led by a seasoned meditation instructor, this class introduces mindfulness techniques, breathing exercises, and guided meditation to help you reduce stress, improve focus, and enhance overall well-being. Whether you're a beginner or an experienced meditator, join us for a journey into serenity.",
+    "duration": 30,
+    "intensity": "Low",
+    "equipment": "Comfortable seating, quiet space"
+  }
+]
