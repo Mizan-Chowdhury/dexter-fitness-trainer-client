@@ -16,7 +16,6 @@ const Banner = () => {
         setBanner(data);
       });
   }, []);
-  console.log(banner);
 
   return (
     <div>
