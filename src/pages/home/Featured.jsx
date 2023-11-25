@@ -12,16 +12,16 @@ const Featured = () => {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="lg:max-w-7xl mx-auto">
       <div >
       <SectionTitle>Our Featured</SectionTitle>
       </div>
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-8">
         {featured.map((i) => (
           <div key={i.id}>
-            <div className="flex gap-4 bg-white p-5">
+            <div className="md:flex gap-4 bg-white p-5">
               <div>
-                <img className="w-96" src={i.image} alt="" />
+                <img className="md:w-96" src={i.image} alt="" />
               </div>
               <div>
                 <h1 className="text-lg font-bold">{i.title}</h1>

@@ -41,13 +41,15 @@ const Banner = () => {
                 backgroundImage: `url(${i.image})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
-                backgroundPosition: 'center'
+                backgroundPosition: "center",
               }}
             >
               <div className="hero-overlay bg-opacity-40"></div>
               <div className=" text-white flex items-center h-screen">
-                <div className="w-2/3 md:w-1/2 ml-10">
-                  <h1 className="mb-5 text-5xl font-bold">{i.title}</h1>
+                <div className="md:w-1/2 px-5 md:px-0 md:ml-10">
+                  <h1 className="mb-5 text-3xl md:text-5xl font-bold">
+                    {i.title}
+                  </h1>
                   <p className="mb-5">{i.description}</p>
                   <Link to={"/classes"}>
                     <button className="btn font-bold">Our Classes</button>
