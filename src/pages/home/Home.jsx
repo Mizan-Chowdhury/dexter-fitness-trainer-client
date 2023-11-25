@@ -2,6 +2,7 @@ import About from "./About";
 import Banner from "./Banner";
 import Featured from "./Featured";
 import FeaturedClasses from "./FeaturedClasses";
+import Newsletter from "./Newsletter";
 import Reviews from "./Reviews";
 
 const Home = () => {
@@ -21,6 +22,9 @@ const Home = () => {
       </div>
       <div>
         <Reviews></Reviews>
+      </div>
+      <div>
+        <Newsletter></Newsletter>
       </div>
     </div>
   );
