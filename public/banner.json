@@ -1,0 +1,20 @@
+[
+    {
+        "id": "1",
+        "image": "https://i.ibb.co/ZMzkpXs/slide1.jpg",
+        "title": "Transform Your Body, Transform Your Life",
+        "description":"Unlock your full potential with personalized fitness plans designed by experts. Embrace a healthier, stronger version of yourself."
+    },
+    {
+        "id": "2",
+        "image": "https://i.ibb.co/XXrhQb7/desktop-wallpaper-fitness-203-physical-fitness.jpg",
+        "title": "Elevate Your Fitness Journey with Expert Guidance",
+        "description":"Embark on a fitness adventure guided by our experienced trainers. Achieve your goals with tailored workouts and unwavering support."
+    },
+    {
+        "id": "3",
+        "image": "https://i.ibb.co/bdhQvhv/desktop-wallpaper-gym-bodybuilding.jpg",
+        "title": "Your Path to Wellness Starts Here",
+        "description":"Join us in the pursuit of a balanced and healthy lifestyle. Experience personalized training that goes beyond the gym, shaping a better you."
+    }
+]

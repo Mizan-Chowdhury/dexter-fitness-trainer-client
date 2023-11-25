@@ -1,0 +1,38 @@
+[
+    {
+        "id": "1",
+        "image": "https://i.ibb.co/7XSrQcc/icons8-run-100.png",
+        "title": "Balance Body Mind",
+        "description":"Achieve harmony from within with our 'Balance Body Mind' program. Explore a holistic approach to wellness, integrating mind-body practices that promote equilibrium, mindfulness, and a sense of well-being."
+    },
+    {
+        "id": "2",
+        "image": "https://i.ibb.co/bBgYzz1/icons8-peach-100.png",
+        "title": "Nutrition Plan",
+        "description":"Fuel your journey to a healthier you with our tailored 'Nutrition Plan' Delve into a world of balanced and nutritious choices designed to support your fitness goals, providing the essential building blocks for a vibrant lifestyle."
+    },
+    {
+        "id": "3",
+        "image": "https://i.ibb.co/QpXk0R0/icons8-dumbbell-100.png",
+        "title": "Fitness & Performance",
+        "description":"Elevate your fitness game with our 'Fitness & Performance' program. Unleash your full potential with specialized workouts and training regimens, tailored to enhance strength, agility, and overall athletic performance."
+    },
+    {
+        "id": "4",
+        "image": "https://i.ibb.co/fCrVw0M/icons8-shoes-100.png",
+        "title": "Routine Programme",
+        "description":"Cultivate consistency and results with our 'Routine Programme' Discover personalized routines crafted to fit seamlessly into your lifestyle, making fitness an enjoyable and sustainable part of your daily life."
+    },
+    {
+        "id": "5",
+        "image": "https://i.ibb.co/2KG3f8F/icons8-pullups-100-1.png",
+        "title": "Weight Loss Program",
+        "description":"Embark on a transformative journey with our 'Weight Loss Program' This comprehensive plan is designed to help you shed pounds effectively through a combination of targeted exercises, mindful nutrition, and expert guidance."
+    },
+    {
+        "id": "6",
+        "image": "https://i.ibb.co/mJ6gt1h/icons8-activity-100.png",
+        "title": "Cardio Exercise",
+        "description":"Ignite your cardiovascular health with our 'Cardio Exercise' program. Immerse yourself in heart-pumping workouts that not only enhance endurance but also contribute to overall cardiovascular well-being. Get ready to experience the invigorating benefits of a strong and healthy heart."
+    }
+]
