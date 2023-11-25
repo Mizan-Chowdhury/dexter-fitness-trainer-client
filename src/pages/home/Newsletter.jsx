@@ -1,7 +1,11 @@
 const Newsletter = () => {
 
     const handleSubscribe = (e) =>{
-
+        e.preventDefault();
+        const form =  e.target;
+        const name = form.name.value
+        const email = form.email.value
+        console.log(name,email)
     }
 
 
@@ -25,7 +29,7 @@ const Newsletter = () => {
               name="name"
               type="text"
               placeholder="Your name"
-              className="input input-bordered w-full bg-black"
+              className="input input-bordered w-full bg-zinc-900 rounded-full"
             />
           </div>
           <div>
@@ -33,7 +37,7 @@ const Newsletter = () => {
               name="email"
               type="text"
               placeholder="Your email"
-              className="input input-bordered w-full bg-black"
+              className="input input-bordered w-full bg-zinc-900 rounded-full"
             />
           </div>
           <input
