@@ -72,7 +72,7 @@ const Navbar = () => {
                   </h1>
                 </div>
                 <ul className="menu menu-lg">
-                  <Navlist route={"/dashboard"}>Dashboard</Navlist>
+                  <Navlist route={"/dashboard/subscribers"}>Dashboard</Navlist>
                   <li>
                     <Link
                       onClick={handleLogOut}
@@ -132,7 +132,7 @@ const Navbar = () => {
                   </h1>
                   <ul className="menu menu-lg">
                     {navList}
-                    <Navlist route={"/dashboard"}>Dashboard</Navlist>
+                    <Navlist route={"/dashboard/subscribers"}>Dashboard</Navlist>
                   </ul>
                 </div>
               </div>

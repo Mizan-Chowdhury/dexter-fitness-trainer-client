@@ -9,12 +9,14 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 const provider = new GoogleAuthProvider();
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loader, setLoader] = useState(true);
+  const axiosPublic = useAxiosPublic();
 
   const createUser = (email, password) => {
     setLoader(true);
@@ -44,28 +46,26 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       const userEmail = currentUser?.email || user?.email
       const loggedUser = {email : userEmail}
-      console.log(loggedUser);
-
-
       setUser(currentUser);
       setLoader(false);
-    //   if (currentUser) {
-    //     axios.post('/jwt', loggedUser, {withCredentials: true})
-    //     .then(res=>{
-    //       console.log(res.data);
-    //     })
-    //   }
-    //   else{
-    //     axios.post('/logout', loggedUser, {withCredentials: true})
-    //     .then(res=>{
-    //       console.log(res.data);
-    //     })
-    //   }
+      console.log(currentUser?.email);
+      if (currentUser?.email) {
+        axiosPublic.post('/jwt', loggedUser, {withCredentials: true})
+        .then(res=>{
+          console.log(res.data);
+        })
+      }
+      else{
+        axiosPublic.post('/logout', loggedUser, {withCredentials: true})
+        .then(res=>{
+          console.log(res.data);
+        })
+      }
     });
     return () => {
       unSubscribe();
     };
-  }, []);
+  }, [axiosPublic, user?.email]);
 
   const authInfo = {
     loader,

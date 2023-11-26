@@ -4,10 +4,10 @@ import Navlist from "../shared/Navlist";
 const Dashboard = () => {
     const user = true;
   return (
-    <div className="grid grid-cols-12 max-w-7xl mx-auto">
-      <div className="col-span-2 mt-10">
+    <div className="grid grid-cols-12 max-w-7xl mx-auto mt-20">
+      <div className="col-span-2">
         <ul className="menu menu-md font-bold">
-          <Navlist route={"/dashboard"}>Dashboard</Navlist>
+          {/* <Navlist route={"/dashboard"}>Dashboard</Navlist> */}
           <Navlist route={"/dashboard/subscribers"}>All subscribers</Navlist>
           <Navlist route={"/dashboard/trainers"}>All Trainers</Navlist>
           <Navlist route={"/dashboard/newTrainers"}>Applied Trainer</Navlist>

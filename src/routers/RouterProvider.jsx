@@ -5,6 +5,7 @@ import Gallery from "../pages/gallery/Gallery";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import Dashboard from "../dashboard/Dashboard";
+import Subscribers from "../dashboard/allsubscriber/Subscribers";
 
 const Myrouter = createBrowserRouter([
     {
@@ -31,7 +32,13 @@ const Myrouter = createBrowserRouter([
     },
     {
         path: 'dashboard',
-        element: <Dashboard></Dashboard>
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: 'subscribers',
+                element: <Subscribers></Subscribers>
+            }
+        ]
     }
 ])
 
