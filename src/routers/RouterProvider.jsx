@@ -6,6 +6,7 @@ import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import Dashboard from "../dashboard/Dashboard";
 import Subscribers from "../dashboard/allsubscriber/Subscribers";
+import BeATrainer from "../components/BeATrainer";
 
 const Myrouter = createBrowserRouter([
     {
@@ -27,16 +28,20 @@ const Myrouter = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
-            }
-        ]
-    },
-    {
-        path: 'dashboard',
-        element: <Dashboard></Dashboard>,
-        children: [
+            },
             {
-                path: 'subscribers',
-                element: <Subscribers></Subscribers>
+                path:'/beATrainer',
+                element: <BeATrainer></BeATrainer>
+            },
+            {
+                path: 'dashboard',
+                element: <Dashboard></Dashboard>,
+                children: [
+                    {
+                        path: 'subscribers',
+                        element: <Subscribers></Subscribers>
+                    }
+                ]
             }
         ]
     }

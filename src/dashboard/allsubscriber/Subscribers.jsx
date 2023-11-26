@@ -16,7 +16,7 @@ const Subscribers = () => {
   console.log(subscribers);
 
   return (
-    <div className="px-10">
+    <div className="lg:px-10">
         <div>
             <SectionTitle>Subscribers</SectionTitle>
         </div>
