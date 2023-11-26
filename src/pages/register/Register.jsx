@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuthContext from "../../hooks/useAuthContext";
+import toast from "react-hot-toast";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
   const { createUser, updateUser } = useAuthContext();
   const [error, setError] = useState("");
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -15,40 +19,41 @@ const Register = () => {
     const password = form.password.value;
     console.log(name, password, email, photo);
 
-    // if (!/^(?=.*?[A-Z])(?=.*?[#?!@$%^&*-]).{6,}$/.test(password)) {
-    //   setError(
-    //     "Error: Your password needs to be longer and contain a capital letter and special character."
-    //   );
-    // } else {
-    //   createUser(email, password)
-    //     .then((res) => {
-    //       console.log(res.user);
-    //       updateUser(name, photo)
-    //         .then((res) => {
-    //           console.log(res);
-    //         //   axiosPublic.post("/users", { email, name }).then((res) => {
-    //         //     console.log(res.data);
-    //         //     toast.success("Successfully registered.");
-    //         //     setError("");
-    //         //     form.reset();
-    //         //   });
-    //         })
-    //         .catch((err) => {
-    //           console.log(err);
-    //         });
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //       setError(err.message);
-    //     });
-    // }
+    if (!/^(?=.*?[A-Z])(?=.*?[#?!@$%^&*-]).{6,}$/.test(password)) {
+      setError(
+        "Error: Your password needs to be longer and contain a capital letter and special character."
+      );
+    } else {
+      createUser(email, password)
+        .then((res) => {
+          console.log(res);
+          updateUser(name, photo)
+            .then((res) => {
+              console.log(res);
+              axiosPublic.post("/users", { email, name , role: 'member' }).then((res) => {
+                console.log(res.data);
+                toast.success("Successfully registered.");
+                navigate("/");
+                setError("");
+                form.reset();
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+          setError(err.message);
+        });
+    }
   };
 
   return (
     <div>
       <div className="">
         <div className="card max-w-md mx-auto shadow-2xl bg-base-100 my-32">
-          <h1 className="text-5xl font-bold text-center mt-5 text-[#EEA72B]">
+          <h1 className="text-5xl font-bold text-center mt-5 text-[#A8CA73]">
             Register now!
           </h1>
           <form onSubmit={handleRegister} className="card-body">
@@ -102,12 +107,12 @@ const Register = () => {
             </div>
             <p className="text-red-600">{error}</p>
             <div className="form-control">
-              <button className="btn bg-[#EEA72B]">Register</button>
+              <button className="btn bg-[#A8CA73] font-bold">Register</button>
             </div>
             <p className=" text-center">
               Already have an account? Please{" "}
               <Link
-                className="text-[#EEA72B] font-bold underline"
+                className="text-[#A8CA73] font-bold underline"
                 to={"/login"}
               >
                 Login

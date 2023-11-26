@@ -1,11 +1,23 @@
+import toast from "react-hot-toast";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+
 const Newsletter = () => {
+    const axiosPublic = useAxiosPublic();
 
     const handleSubscribe = (e) =>{
         e.preventDefault();
         const form =  e.target;
-        const name = form.name.value
-        const email = form.email.value
-        console.log(name,email)
+        const newSubscriber = {
+          name : form.name.value,
+          email : form.email.value
+        }
+        console.log(newSubscriber)
+        axiosPublic.post('/subscribers', newSubscriber)
+        .then(res=>{
+          console.log(res.data);
+            toast.success("Subscribe done.");
+            form.reset();
+        })
     }
 
 
