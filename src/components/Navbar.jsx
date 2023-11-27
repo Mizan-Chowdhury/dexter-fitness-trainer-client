@@ -14,7 +14,7 @@ const Navbar = () => {
       <Navlist route={"/trainer"}>Trainer</Navlist>
       <Navlist route={"/classes"}>Classes</Navlist>
       <Navlist route={"/community"}>Community</Navlist>
-      <Navlist route={"/dashboard/subscribers"}>Dashboard</Navlist>
+      <Navlist route={"/dashboard"}>Dashboard</Navlist>
     </>
   );
 
