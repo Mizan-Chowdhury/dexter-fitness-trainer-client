@@ -11,6 +11,7 @@ import Trainer from "../pages/trainer/Trainer";
 import TrainerDetails from "../pages/trainer/TrainerDetails";
 import TrainerBooked from "../pages/trainer/TrainerBooked";
 import AddForum from "../dashboard/addForum/AddForum";
+import Forum from "../pages/community/Forum";
 
 const Myrouter = createBrowserRouter([
     {
@@ -49,6 +50,11 @@ const Myrouter = createBrowserRouter([
             {
                 path:'/beATrainer',
                 element: <BeATrainer></BeATrainer>
+            },
+            {
+                path: '/community',
+                element: <Forum></Forum>,
+                loader: ()=> fetch('http://localhost:5000/articlesCount')
             },
             {
                 path: 'dashboard',
