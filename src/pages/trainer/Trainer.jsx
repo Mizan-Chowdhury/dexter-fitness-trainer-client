@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import SectionTitle from "../../shared/SectionTitle";
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
-import { MdOutlineMore } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const Trainer = () => {
@@ -15,7 +14,7 @@ const Trainer = () => {
       return res.data;
     },
   });
-
+console.log(trainers);
   return (
     <div className="max-w-7xl mx-auto py-20 md:py-32 px-4">
       <div>
@@ -23,7 +22,7 @@ const Trainer = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {trainers?.map((i) => (
-          <div className="flex flex-col shadow-lg p-3" key={i.id}>
+          <div className="flex flex-col shadow-lg p-3" key={i._id}>
             <div className="text-center">
               <img className="rounded-full h-28 mx-auto" src={i.image} alt="" />
               <h1 className="font-bold text-lg">{i.name}</h1>
@@ -58,7 +57,7 @@ const Trainer = () => {
               </div>
             </div>
             <div className="text-right">
-              <Link to={`/trainers/:${i._id}`}>
+              <Link to={`/trainers/${i._id}`}>
                 <button className="mt-5 font-semibold">Know more...</button>
               </Link>
             </div>

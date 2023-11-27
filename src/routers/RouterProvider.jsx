@@ -8,6 +8,8 @@ import Dashboard from "../dashboard/Dashboard";
 import Subscribers from "../dashboard/allsubscriber/Subscribers";
 import BeATrainer from "../components/BeATrainer";
 import Trainer from "../pages/trainer/Trainer";
+import TrainerDetails from "../pages/trainer/TrainerDetails";
+import TrainerBooked from "../pages/trainer/TrainerBooked";
 
 const Myrouter = createBrowserRouter([
     {
@@ -33,6 +35,15 @@ const Myrouter = createBrowserRouter([
             {
                 path: '/trainer',
                 element: <Trainer></Trainer>
+            },
+            {
+                path: '/trainers/:id',
+                element: <TrainerDetails></TrainerDetails>,
+                loader: ({params})=> fetch(`http://localhost:5000/trainers/${params.id}`)
+            },
+            {
+                path: '/trainerBooked',
+                element: <TrainerBooked></TrainerBooked>
             },
             {
                 path:'/beATrainer',

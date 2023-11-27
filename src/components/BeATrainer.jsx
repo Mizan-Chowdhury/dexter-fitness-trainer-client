@@ -37,6 +37,7 @@ const BeATrainer = () => {
           email: user.email,
           image: res?.data?.data?.display_url,
           experience: data.experience,
+          role: "member",
           skills: [
             data.teaching && "Teaching Knowledge",
             data.nutritional && "Nutritional Knowledge",
