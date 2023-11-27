@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import SectionTitle from "../../shared/SectionTitle";
 import useAuthContext from "../../hooks/useAuthContext";
 import toast from "react-hot-toast";
+import useUsers from "../../hooks/useUsers";
 
 const image_host_key = import.meta.env.VITE_IMAGE_HOST_KEY;
 const image_host_api = `https://api.imgbb.com/1/upload?key=${image_host_key}`;
@@ -11,6 +12,7 @@ const image_host_api = `https://api.imgbb.com/1/upload?key=${image_host_key}`;
 const AddForum = () => {
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
+  const [users] = useUsers();
   const {
     register,
     handleSubmit,
@@ -47,19 +49,20 @@ const AddForum = () => {
         const newArticle = {
           heading: data.heading,
           email: user.email,
+          role: users?.role,
           image: res?.data?.data?.display_url,
           description: data.description,
           date: date,
           time: time,
         };
         console.log(newArticle);
-        // if (res.data.success) {
-        //   axiosSecure.post("/", newArticle).then((res) => {
-        //     console.log(res);
-        //     toast.success("Successfully applied.");
-        //     reset();
-        //   });
-        // }
+        if (res.data.success) {
+          axiosSecure.post("/articles", newArticle).then((res) => {
+            console.log(res);
+            toast.success("Successfully added.");
+            reset();
+          });
+        }
       });
   };
 
