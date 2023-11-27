@@ -12,6 +12,8 @@ import TrainerDetails from "../pages/trainer/TrainerDetails";
 import TrainerBooked from "../pages/trainer/TrainerBooked";
 import AddForum from "../dashboard/addForum/AddForum";
 import Forum from "../pages/community/Forum";
+import NewTrainers from "../dashboard/allTrainers/NewTrainers";
+import AllTrainers from "../dashboard/allTrainers/AllTrainers";
 
 const Myrouter = createBrowserRouter([
     {
@@ -63,6 +65,14 @@ const Myrouter = createBrowserRouter([
                     {
                         path: 'subscribers',
                         element: <Subscribers></Subscribers>
+                    },
+                    {
+                        path: 'trainers',
+                        element: <AllTrainers></AllTrainers>
+                    },
+                    {
+                        path: 'newTrainers',
+                        element: <NewTrainers></NewTrainers>
                     },
                     {
                         path: 'forum',

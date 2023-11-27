@@ -2,7 +2,7 @@
 const AllTrainers = () => {
     return (
         <div>
-            
+            all trainer
         </div>
     );
 };
