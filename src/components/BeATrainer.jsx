@@ -11,7 +11,12 @@ const image_host_api = `https://api.imgbb.com/1/upload?key=${image_host_key}`;
 const BeATrainer = () => {
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const { user } = useAuthContext();
 
   const onSubmit = (data) => {
@@ -26,7 +31,9 @@ const BeATrainer = () => {
       .then((res) => {
         const newTrainer = {
           name: data.name,
-          age: data.age,
+          age: parseInt(data.age),
+          weekTime: parseInt(data.week_time),
+          dayTime: parseInt(data.day_time),
           email: user.email,
           image: res?.data?.data?.display_url,
           experience: data.experience,
@@ -40,10 +47,9 @@ const BeATrainer = () => {
         console.log(newTrainer);
         if (res.data.success) {
           axiosSecure.post("/newTrainers", newTrainer).then((res) => {
-            if (res.data) {
-              toast.success("Menu successfully added.");
-              reset();
-            }
+            console.log(res);
+            toast.success("Successfully applied.");
+            reset();
           });
         }
       });
@@ -62,22 +68,28 @@ const BeATrainer = () => {
                 <span className="label-text font-bold text-lg">Full name*</span>
               </label>
               <input
-                {...register("name")}
+                {...register("name", { required: true })}
                 type="text"
                 placeholder="Full name"
                 className="input input-bordered w-full"
               />
+              {errors.name && (
+                <p className="text-red-700">Full name is required.</p>
+              )}
             </div>
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text font-bold text-lg">Your age*</span>
               </label>
               <input
-                {...register("age")}
+                {...register("age", { pattern: /\d+/ })}
                 type="text"
                 placeholder="Your age"
                 className="input input-bordered w-full"
               />
+              {errors.age && (
+                <p className="text-red-700">Please enter number for age.</p>
+              )}
             </div>
           </div>
 
@@ -89,63 +101,66 @@ const BeATrainer = () => {
                 </span>
               </label>
               <input
-                {...register("experience")}
+                {...register("experience", { required: true })}
                 type="text"
                 placeholder="Experience"
                 className="input input-bordered w-full"
               />
+              {errors.experience && (
+                <p className="text-red-700">Experience is required.</p>
+              )}
             </div>
             <div className="w-full">
               <label className="label">
                 <span className="label-text font-bold text-lg">Skills*</span>
               </label>
-              <div className="md:flex">
+              <div className="md:flex gap-2 space-y-2 md:space-y-0">
                 <div className="form-control">
-                  <label className="label cursor-pointer">
-                    <span className="label-text font-semibold">
-                      Teaching Knowledge
-                    </span>
+                  <label className="flex items-center">
                     <input
                       {...register("teaching")}
                       type="checkbox"
-                      className="checkbox"
+                      className="checkbox mr-1"
                     />
+                    <span className="label-text font-semibold">
+                      Teaching Knowledge
+                    </span>
                   </label>
                 </div>
                 <div className="form-control">
-                  <label className="label cursor-pointer">
-                    <span className="label-text font-semibold">
-                      Fitness Knowledge
-                    </span>
+                  <label className="flex items-center">
                     <input
                       {...register("fitness")}
                       type="checkbox"
-                      className="checkbox"
+                      className="checkbox mr-1"
                     />
+                    <span className="label-text font-semibold">
+                      Fitness Knowledge
+                    </span>
                   </label>
                 </div>
                 <div className="form-control">
-                  <label className="label cursor-pointer">
-                    <span className="label-text font-semibold">
-                      Nutritional Knowledge
-                    </span>
+                  <label className="flex items-center">
                     <input
                       {...register("nutritional")}
                       type="checkbox"
-                      className="checkbox"
+                      className="checkbox mr-1"
                     />
+                    <span className="label-text font-semibold">
+                      Nutritional Knowledge
+                    </span>
                   </label>
                 </div>
                 <div className="form-control">
-                  <label className="label cursor-pointer">
-                    <span className="label-text font-semibold">
-                      Motivational Skills
-                    </span>
+                  <label className="flex items-center">
                     <input
                       {...register("motivational")}
                       type="checkbox"
-                      className="checkbox"
+                      className="checkbox mr-1"
                     />
+                    <span className="label-text font-semibold">
+                      Motivational Skills
+                    </span>
                   </label>
                 </div>
               </div>
@@ -160,11 +175,17 @@ const BeATrainer = () => {
                 </span>
               </label>
               <input
-                {...register("week_time")}
+                {...register("week_time", { required: true })}
                 type="text"
                 placeholder="Available Time in a week"
                 className="input input-bordered w-full"
               />
+              {errors.week_time && (
+                <p className="text-red-700">
+                  {" "}
+                  Available week time is required.
+                </p>
+              )}
             </div>
             <div className="form-control w-full">
               <label className="label">
@@ -173,11 +194,17 @@ const BeATrainer = () => {
                 </span>
               </label>
               <input
-                {...register("day_time")}
+                {...register("day_time",{ required: true })}
                 type="text"
                 placeholder="Available Time in a day"
                 className="input input-bordered w-full"
               />
+              {errors.day_time && (
+                <p className="text-red-700">
+                  {" "}
+                  Available week time is required.
+                </p>
+              )}
             </div>
           </div>
 
@@ -203,10 +230,16 @@ const BeATrainer = () => {
                 </span>
               </label>
               <input
-                {...register("image")}
+                {...register("image",{ required: true })}
                 type="file"
                 className="file-input w-full max-w-xs"
               />
+              {errors.week_time && (
+                <p className="text-red-700">
+                  {" "}
+                  Available week time is required.
+                </p>
+              )}
             </div>
           </div>
 

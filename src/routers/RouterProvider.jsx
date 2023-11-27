@@ -7,6 +7,7 @@ import Register from "../pages/register/Register";
 import Dashboard from "../dashboard/Dashboard";
 import Subscribers from "../dashboard/allsubscriber/Subscribers";
 import BeATrainer from "../components/BeATrainer";
+import Trainer from "../pages/trainer/Trainer";
 
 const Myrouter = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ const Myrouter = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/trainer',
+                element: <Trainer></Trainer>
             },
             {
                 path:'/beATrainer',
