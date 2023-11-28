@@ -14,6 +14,9 @@ import AddForum from "../dashboard/addForum/AddForum";
 import Forum from "../pages/community/Forum";
 import NewTrainers from "../dashboard/allTrainers/NewTrainers";
 import AllTrainers from "../dashboard/allTrainers/AllTrainers";
+import AddClasses from "../dashboard/addClasses/AddClasses";
+import Classes from "../pages/classes/Classes";
+import ClassDetails from "../pages/classes/ClassDetails";
 
 const Myrouter = createBrowserRouter([
     {
@@ -27,6 +30,14 @@ const Myrouter = createBrowserRouter([
             {
                 path: '/gallery',
                 element: <Gallery></Gallery>
+            },
+            {
+                path: '/classes',
+                element: <Classes></Classes>
+            },
+            {
+                path: '/classDetails/:id',
+                element: <ClassDetails></ClassDetails>
             },
             {
                 path: '/login',
@@ -77,6 +88,10 @@ const Myrouter = createBrowserRouter([
                     {
                         path: 'forum',
                         element: <AddForum></AddForum>
+                    },
+                    {
+                        path: 'addClass',
+                        element: <AddClasses></AddClasses>
                     }
                 ]
             }

@@ -9,7 +9,6 @@ const Articles = () => {
 
   useEffect(() => {
     axiosSecure.get(`/articles?page=0}&size=1}`).then((res) => {
-      console.log(res.data[0]);
       setArticles(res?.data[0]);
     });
   }, [axiosSecure]);

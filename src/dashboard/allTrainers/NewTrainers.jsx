@@ -3,12 +3,13 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import SectionTitle from "../../shared/SectionTitle";
 import { FaEye } from "react-icons/fa6";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const NewTrainers = () => {
   const axiosSecure = useAxiosSecure();
   const [trainerDetails, setTrainerDetails] = useState(null);
 
-  const { data: applicantTrainer } = useQuery({
+  const { data: applicantTrainer, refetch } = useQuery({
     queryKey: ["applicantTrainer"],
     queryFn: async () => {
       const res = await axiosSecure.get("/applicantTrainer");
@@ -16,9 +17,15 @@ const NewTrainers = () => {
     },
   });
 
-  const handleConfirmReject = (id, role) =>{
+  const handleConfirmReject = (id, role, email) => {
     console.log(id, role);
-  }
+    axiosSecure.patch(`/applicantTrainer/${id}`, {role, email}).then((res) => {
+      console.log(res);
+      toast.success("Successfully Maked Trainer.");
+      refetch();
+    });
+  };
+
   return (
     <div className="lg:px-10">
       <div>
@@ -32,6 +39,7 @@ const NewTrainers = () => {
               <th>#</th>
               <th>Name</th>
               <th>Email</th>
+              <th>Position</th>
               <th></th>
             </tr>
           </thead>
@@ -42,6 +50,7 @@ const NewTrainers = () => {
                 <td>{index + 1}</td>
                 <td>{i.name}</td>
                 <td>{i.email}</td>
+                <td>{i.role}</td>
                 <td>
                   {/* You can open the modal using document.getElementById('ID').showModal() method */}
                   <button
@@ -104,10 +113,24 @@ const NewTrainers = () => {
                       </div>
                       <div className="modal-action justify-between">
                         <form method="dialog">
-                          <button onClick={()=>handleConfirmReject(trainerDetails._id, 'trainer')} className="btn">Confirm</button>
+                          <button
+                            onClick={() =>
+                              handleConfirmReject(trainerDetails._id, "trainer", trainerDetails.email)
+                            }
+                            className="btn"
+                          >
+                            Confirm
+                          </button>
                         </form>
                         <form method="dialog">
-                          <button onClick={()=>handleConfirmReject(trainerDetails._id, 'member')} className="btn">Reject</button>
+                          <button
+                            onClick={() =>
+                              handleConfirmReject(trainerDetails._id, "user", trainerDetails.email)
+                            }
+                            className="btn"
+                          >
+                            Reject
+                          </button>
                         </form>
                       </div>
                     </div>

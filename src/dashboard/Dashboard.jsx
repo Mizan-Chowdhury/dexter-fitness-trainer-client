@@ -7,7 +7,7 @@ const Dashboard = () => {
   const [isAdmin] = useAdmin();
   const [isTrainer] = useTrainer();
   return (
-    <div className="md:grid grid-cols-12 max-w-7xl space-y-4 md:space-y-0 mx-auto h-screen my-32">
+    <div className="md:grid grid-cols-12 max-w-7xl space-y-4 md:space-y-0 mx-auto my-32">
       {isAdmin && (
         <div className="col-span-2">
           <h1 className="text-center text-2xl font-bold mb-5">
