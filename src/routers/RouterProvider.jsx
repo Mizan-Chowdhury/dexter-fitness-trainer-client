@@ -17,11 +17,18 @@ import AllTrainers from "../dashboard/allTrainers/AllTrainers";
 import AddClasses from "../dashboard/addClasses/AddClasses";
 import Classes from "../pages/classes/Classes";
 import ClassDetails from "../pages/classes/ClassDetails";
+import PrivateRoute from "./PrivateRoute";
+import PrivateAdmin from "./PrivateAdmin";
+import Error from "../pages/error/Error";
+import Slots from "../dashboard/manageSlots/Slots";
+import ManageMember from "../dashboard/manageMember.jsx/ManageMember";
+
 
 const Myrouter = createBrowserRouter([
     {
         path: '/',
         element: <Root></Root>,
+        errorElement: <Error></Error>,
         children: [
             {
                 path: '/',
@@ -57,12 +64,12 @@ const Myrouter = createBrowserRouter([
                 loader: ({params})=> fetch(`http://localhost:5000/trainers/${params.id}`)
             },
             {
-                path: '/trainerBooked',
-                element: <TrainerBooked></TrainerBooked>
+                path: '/trainerBooked/:time',
+                element: <PrivateRoute><TrainerBooked></TrainerBooked></PrivateRoute>,
             },
             {
                 path:'/beATrainer',
-                element: <BeATrainer></BeATrainer>
+                element: <PrivateRoute><BeATrainer></BeATrainer></PrivateRoute>
             },
             {
                 path: '/community',
@@ -71,19 +78,19 @@ const Myrouter = createBrowserRouter([
             },
             {
                 path: 'dashboard',
-                element: <Dashboard></Dashboard>,
+                element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
                 children: [
                     {
                         path: 'subscribers',
-                        element: <Subscribers></Subscribers>
+                        element: <PrivateAdmin><Subscribers></Subscribers></PrivateAdmin>
                     },
                     {
                         path: 'trainers',
-                        element: <AllTrainers></AllTrainers>
+                        element: <PrivateAdmin><AllTrainers></AllTrainers></PrivateAdmin>
                     },
                     {
                         path: 'newTrainers',
-                        element: <NewTrainers></NewTrainers>
+                        element: <PrivateAdmin><NewTrainers></NewTrainers></PrivateAdmin>
                     },
                     {
                         path: 'forum',
@@ -92,6 +99,14 @@ const Myrouter = createBrowserRouter([
                     {
                         path: 'addClass',
                         element: <AddClasses></AddClasses>
+                    },
+                    {
+                        path: 'manageSlots',
+                        element:<Slots></Slots>
+                    },
+                    {
+                        path: 'manageMember',
+                        element: <ManageMember></ManageMember>
                     }
                 ]
             }

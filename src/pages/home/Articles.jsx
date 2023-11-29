@@ -2,18 +2,19 @@ import { useEffect, useState } from "react";
 import SectionTitle from "../../shared/SectionTitle";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Articles = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const [articles, setArticles] = useState(null);
 
   useEffect(() => {
-    axiosSecure.get(`/articles?page=0}&size=1}`).then((res) => {
+    axiosPublic.get(`/articles?page=0}&size=1}`).then((res) => {
       setArticles(res?.data[0]);
     });
-  }, [axiosSecure]);
+  }, [axiosPublic]);
   return (
-    <div className="max-w-7xl mx-auto px-4">
+    <div className="max-w-7xl mx-auto px-4 py-20">
       <div>
         <SectionTitle>Latest Articles</SectionTitle>
       </div>

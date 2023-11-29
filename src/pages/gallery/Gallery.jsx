@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { Helmet } from "react-helmet";
 
 const Gallery = () => {
   const [photos, setPhotos] = useState([]);
@@ -28,6 +29,11 @@ const Gallery = () => {
 
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Dexter Fitness - Gallery</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div
         className="hero min-h-screen"
         style={{

@@ -4,6 +4,8 @@ import SectionTitle from "../../shared/SectionTitle";
 import { FaEye } from "react-icons/fa6";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import emailjs from "@emailjs/browser";
+
 
 const NewTrainers = () => {
   const axiosSecure = useAxiosSecure();
@@ -19,11 +21,34 @@ const NewTrainers = () => {
 
   const handleConfirmReject = (id, role, email) => {
     console.log(id, role);
-    axiosSecure.patch(`/applicantTrainer/${id}`, {role, email}).then((res) => {
-      console.log(res);
-      toast.success("Successfully Maked Trainer.");
-      refetch();
-    });
+    axiosSecure
+      .patch(`/applicantTrainer/${id}`, { role, email })
+      .then((res) => {
+        console.log(res);
+        toast.success("Successfully Maked Trainer.");
+        refetch();
+      });
+  };
+
+  const sendEmail = (name, email) => {
+    const Data = {
+      user_name: name,
+      user_email: email,
+      message:
+        "Thank you for considering me for your training. After careful consideration, I regret to inform you that I won't be able to proceed with your booking at this time. I appreciate your understanding and wish you continued success on your fitness journey.",
+    };
+    console.log(Data);
+    emailjs
+      .send("service_y8qs7rp", "template_mvrqix9", Data, "Zm9TaDnGdNC8JKFDC")
+      .then(
+        function (response) {
+          console.log("SUCCESS!", response.status, response.text);
+          toast.success("Successfully mailed.");
+        },
+        function (error) {
+          console.log("FAILED...", error);
+        }
+      );
   };
 
   return (
@@ -63,59 +88,81 @@ const NewTrainers = () => {
                     <FaEye></FaEye>
                   </button>
                   <dialog id="my_modal_4" className="modal">
-                    <div className="modal-box text-center">
+                    <div className="modal-box">
+                      <form method="dialog">
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                          ✕
+                        </button>
+                      </form>
                       <img
                         className="rounded-full w-20 md:w-28 mx-auto"
                         src={trainerDetails?.image}
                         alt=""
                       />
-                      <h3 className="font-bold text-lg">
+                      <h3 className="font-bold text-lg text-center">
                         {trainerDetails?.name}
                       </h3>
-                      <h2 className="menu-title">About</h2>
-                      <div className="flex">
-                        <ul className="menu">
-                          <li>
-                            <ul>
-                              <li>
-                                <a>
-                                  Available time in a day :{" "}
-                                  {trainerDetails?.dayTime}h
-                                </a>
-                              </li>
-                              <li>
-                                <a>Experience : {trainerDetails?.experience}</a>
-                              </li>
-                              <li>
-                                <a>Email : {trainerDetails?.email}</a>
-                              </li>
-                            </ul>
-                          </li>
+                      <h2 className="font-bold">About</h2>
+                      <div className="md:flex">
+                        <ul className="flex-1">
+                          <ul className="space-y-2">
+                            <li>
+                              <span className="font-semibold">
+                                Experience :
+                              </span>{" "}
+                              {trainerDetails?.experience}
+                            </li>
+                            <li>
+                              <span className="font-semibold">Email :</span>{" "}
+                              {trainerDetails?.email}
+                            </li>
+                            <li>
+                              {" "}
+                              <span className="font-semibold">
+                                Available Time In A Day :
+                              </span>
+                              {trainerDetails?.dayTime?.map((i) => (
+                                <ul key={i}>
+                                  <li>{i.slots}</li>
+                                </ul>
+                              ))}
+                            </li>
+                          </ul>
                         </ul>
-                        <ul className="menu">
-                          <li>
-                            <ul>
-                              <li>
-                                <a>
-                                  Available time in a week :{" "}
-                                  {trainerDetails?.weekTime}h
-                                </a>
-                              </li>
-                              <li>
-                                <a>Skills : {trainerDetails?.skills}</a>
-                              </li>
-                              <li>
-                                <a>Age : {trainerDetails?.age}</a>
-                              </li>
-                            </ul>
-                          </li>
+                        <div className="divider md:divider-horizontal"></div>
+                        <ul className="flex-1">
+                          <ul className="space-y-2">
+                            <li>
+                              <span className="font-semibold">Skills :</span>{" "}
+                              {trainerDetails?.skills}
+                            </li>
+                            <li>
+                              <span className="font-semibold">Age :</span>{" "}
+                              {trainerDetails?.age}
+                            </li>
+                            <li>
+                              {" "}
+                              <span className="font-semibold">
+                                Available Time In A Week :
+                              </span>
+                              {trainerDetails?.weekTime?.map((i) => (
+                                <ul key={i}>
+                                  <li>{i.slots}</li>
+                                </ul>
+                              ))}
+                            </li>
+                          </ul>
                         </ul>
                       </div>
                       <div className="modal-action justify-between">
                         <form method="dialog">
                           <button
                             onClick={() =>
-                              handleConfirmReject(trainerDetails._id, "trainer", trainerDetails.email)
+                              handleConfirmReject(
+                                trainerDetails._id,
+                                "trainer",
+                                trainerDetails.email
+                              )
                             }
                             className="btn"
                           >
@@ -125,7 +172,12 @@ const NewTrainers = () => {
                         <form method="dialog">
                           <button
                             onClick={() =>
-                              handleConfirmReject(trainerDetails._id, "user", trainerDetails.email)
+                              [handleConfirmReject(
+                                trainerDetails._id,
+                                "user",
+                                trainerDetails.email
+                              ),
+                            sendEmail(trainerDetails?.name,trainerDetails?.email )]
                             }
                             className="btn"
                           >

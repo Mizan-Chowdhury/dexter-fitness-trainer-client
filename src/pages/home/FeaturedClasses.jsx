@@ -11,11 +11,11 @@ const FeaturedClasses = () => {
       });
   }, []);
   return (
-    <div className="max-w-7xl mx-auto py-20 px-4">
+    <div className="max-w-7xl mx-auto py-20 px-2">
         <div>
             <SectionTitle>Featured Classes</SectionTitle>
         </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {featuredClasses.map((i) => (
           <div className="shadow-lg" key={i.id}>
             <div className="relative">

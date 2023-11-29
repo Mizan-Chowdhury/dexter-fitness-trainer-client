@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import useClasses from "./useClasses";
 import SectionTitle from "../../shared/SectionTitle";
 import { CiDiscount1 } from "react-icons/ci";
+import { Helmet } from "react-helmet";
 
 const ClassDetails = () => {
   const [classes, isLoading] = useClasses();
@@ -18,6 +19,11 @@ const ClassDetails = () => {
   console.log(classDetails);
   return (
     <div className="max-w-7xl mx-auto my-36">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Dexter Fitness - Class Details</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div>
         <SectionTitle>Class Details</SectionTitle>
       </div>
@@ -92,7 +98,7 @@ const ClassDetails = () => {
         </div>
       </div>
       <div className="text-center mt-10">
-        <Link to={'/trainer'}>
+        <Link to={"/trainer"}>
           <button className="btn btn-outline">Join Now</button>
         </Link>
       </div>

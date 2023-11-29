@@ -112,6 +112,7 @@ const AddForum = () => {
             </label>
             <textarea
               {...register("description", { required: true })}
+              rows={5}
               className="textarea textarea-bordered"
               placeholder="Description"
             ></textarea>

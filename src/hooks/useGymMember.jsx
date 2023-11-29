@@ -2,18 +2,18 @@ import { useQuery } from "@tanstack/react-query";
 import useAuthContext from "./useAuthContext";
 import useAxiosSecure from "./useAxiosSecure";
 
-const useTrainer = () => {
+const useGymMember = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuthContext();
-  const { data: isTrainer, isLoading: isTrainerLoading } = useQuery({
-    queryKey: [user?.email, "isTrainer"],
+  const { data: isUser, isLoading: isUserLoading } = useQuery({
+    queryKey: [user?.email, "isUser"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users/trainer/${user.email}`);
+      const res = await axiosSecure.get(`/users/users/${user.email}`);
       console.log(res.data);
       return res.data;
     },
   });
-  return [isTrainer, isTrainerLoading];
+  return [isUser, isUserLoading];
 };
 
-export default useTrainer;
+export default useGymMember;

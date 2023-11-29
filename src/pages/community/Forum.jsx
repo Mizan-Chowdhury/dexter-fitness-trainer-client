@@ -1,7 +1,11 @@
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import SectionTitle from "../../shared/SectionTitle";
 import { BsCalendarDateFill } from "react-icons/bs";
-import { MdOutlineAccessTimeFilled } from "react-icons/md";
+import {
+  MdOutlineAccessTimeFilled,
+  MdAdminPanelSettings,
+  MdAddModerator,
+} from "react-icons/md";
 import { BiSolidLike, BiSolidDislike } from "react-icons/bi";
 import {
   HiOutlineBookmark,
@@ -10,6 +14,7 @@ import {
 } from "react-icons/hi2";
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Forum = () => {
   const axiosSecure = useAxiosSecure();
@@ -57,11 +62,7 @@ const Forum = () => {
 
     return (
       <button className="btn btn-sm" onClick={handleClick}>
-        {isLiked ? (
-          'Unvote'
-        ) : (
-          'Vote'
-        )}
+        {isLiked ? "Unvote" : "Vote"}
       </button>
     );
   };
@@ -69,6 +70,11 @@ const Forum = () => {
   console.log(articles);
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Dexter Fitness - Community</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div
         className="hero min-h-screen"
         style={{
@@ -96,7 +102,13 @@ const Forum = () => {
               className="border-[#F3F3F3] border-2 mt-8 rounded-md"
             >
               <div className="flex justify-between items-center bg-[#F3F3F3] p-4">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-1">
+                  {item.role === "admin" ? (
+                    <MdAdminPanelSettings className="text-xl"></MdAdminPanelSettings>
+                  ) : (
+                    <MdAddModerator></MdAddModerator>
+                  )}
+                  <p>{item.role}</p>
                 </div>
                 <div className="space-x-3">
                   <button>

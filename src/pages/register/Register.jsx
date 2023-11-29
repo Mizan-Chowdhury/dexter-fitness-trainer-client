@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuthContext from "../../hooks/useAuthContext";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const { createUser, updateUser } = useAuthContext();
   const [error, setError] = useState("");
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -30,13 +32,15 @@ const Register = () => {
           updateUser(name, photo)
             .then((res) => {
               console.log(res);
-              axiosPublic.post("/users", { email, name , role: 'member' }).then((res) => {
-                console.log(res.data);
-                toast.success("Successfully registered.");
-                navigate("/");
-                setError("");
-                form.reset();
-              });
+              axiosPublic
+                .post("/users", { email, name, role: "member" })
+                .then((res) => {
+                  console.log(res.data);
+                  toast.success("Successfully registered.");
+                  navigate(location?.state ? location.state : "/");
+                  setError("");
+                  form.reset();
+                });
             })
             .catch((err) => {
               console.log(err);
@@ -51,6 +55,11 @@ const Register = () => {
 
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Dexter Fitness - Register</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div className="">
         <div className="card max-w-md mx-auto shadow-2xl bg-base-100 my-32">
           <h1 className="text-5xl font-bold text-center mt-5 text-[#A8CA73]">

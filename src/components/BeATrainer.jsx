@@ -4,6 +4,7 @@ import useAuthContext from "../hooks/useAuthContext";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const image_host_key = import.meta.env.VITE_IMAGE_HOST_KEY;
 const image_host_api = `https://api.imgbb.com/1/upload?key=${image_host_key}`;
@@ -22,6 +23,32 @@ const BeATrainer = () => {
   const onSubmit = (data) => {
     const image = { image: data.image[0] };
 
+    const daySlots = [];
+    for (let i = 1; i <= data.day_time; i++) {
+      const startTime = 9 + i;
+      const endTime = startTime + 1;
+      const slotTime = `${startTime}:00 AM - ${endTime}:00 AM`;
+      daySlots.push({ slots : slotTime});
+    }
+
+    const weekSlots = [];
+    const daysOfWeek = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ];
+
+    for (let day = 0; day < data.week_time; day++) {
+      const startTime = 16;
+      const endTime = startTime + 1;
+      const slotTime = `${daysOfWeek[day]}: ${startTime}:00 AM - ${endTime}:00 AM`;
+      weekSlots.push({slots: slotTime});
+    }
+
     axiosPublic
       .post(image_host_api, image, {
         headers: {
@@ -32,8 +59,8 @@ const BeATrainer = () => {
         const newTrainer = {
           name: data.name,
           age: parseInt(data.age),
-          weekTime: parseInt(data.week_time),
-          dayTime: parseInt(data.day_time),
+          weekTime: weekSlots,
+          dayTime: daySlots,
           email: user.email,
           image: res?.data?.data?.display_url,
           experience: data.experience,
@@ -58,6 +85,11 @@ const BeATrainer = () => {
 
   return (
     <div className="max-w-7xl mx-auto py-36 px-2">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Dexter Fitness - Be A Trainer</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div>
         <SectionTitle>Be Our Trainer</SectionTitle>
       </div>
@@ -176,7 +208,7 @@ const BeATrainer = () => {
                 </span>
               </label>
               <input
-                {...register("week_time", { required: true })}
+                {...register("week_time", { required: true, pattern: /\d+/  })}
                 type="text"
                 placeholder="Available Time in a week"
                 className="input input-bordered w-full"
@@ -184,7 +216,7 @@ const BeATrainer = () => {
               {errors.week_time && (
                 <p className="text-red-700">
                   {" "}
-                  Available week time is required.
+                  Available week time is required or enter a number.
                 </p>
               )}
             </div>
@@ -195,7 +227,7 @@ const BeATrainer = () => {
                 </span>
               </label>
               <input
-                {...register("day_time",{ required: true })}
+                {...register("day_time", { required: true ,pattern: /\d+/})}
                 type="text"
                 placeholder="Available Time in a day"
                 className="input input-bordered w-full"
@@ -203,7 +235,7 @@ const BeATrainer = () => {
               {errors.day_time && (
                 <p className="text-red-700">
                   {" "}
-                  Available week time is required.
+                  Available week time is required or enter a number.
                 </p>
               )}
             </div>
@@ -231,14 +263,14 @@ const BeATrainer = () => {
                 </span>
               </label>
               <input
-                {...register("image",{ required: true })}
+                {...register("image", { required: true })}
                 type="file"
                 className="file-input w-full max-w-xs"
               />
-              {errors.week_time && (
+              {errors.image && (
                 <p className="text-red-700">
                   {" "}
-                  Available week time is required.
+                  image is required.
                 </p>
               )}
             </div>

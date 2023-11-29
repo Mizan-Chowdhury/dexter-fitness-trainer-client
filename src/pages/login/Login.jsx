@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuthContext from "../../hooks/useAuthContext";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const { googleSingIn, signInUser } = useAuthContext();
@@ -55,6 +56,11 @@ const Login = () => {
 
   return (
     <div className="card shadow-2xl bg-base-100 max-w-md mx-auto my-32">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Dexter Fitness - Login</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <h1 className="text-5xl font-bold text-center mt-5 text-[#A8CA73]">
         Login now!
       </h1>
