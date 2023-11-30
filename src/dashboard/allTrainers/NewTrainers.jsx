@@ -6,7 +6,6 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import emailjs from "@emailjs/browser";
 
-
 const NewTrainers = () => {
   const axiosSecure = useAxiosSecure();
   const [trainerDetails, setTrainerDetails] = useState(null);
@@ -19,10 +18,20 @@ const NewTrainers = () => {
     },
   });
 
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth() + 1;
+  const currentDay = currentDate.getDate();
+
+  const joinedDay = `${currentYear}-${currentMonth}${
+    currentDay < 10 ? "0" : ""
+  }-${currentDay}${currentMonth < 10 ? "0" : ""}`;
+
+
   const handleConfirmReject = (id, role, email) => {
     console.log(id, role);
     axiosSecure
-      .patch(`/applicantTrainer/${id}`, { role, email })
+      .patch(`/applicantTrainer/${id}`, { role, email , joinedDay})
       .then((res) => {
         console.log(res);
         toast.success("Successfully Maked Trainer.");
@@ -171,14 +180,17 @@ const NewTrainers = () => {
                         </form>
                         <form method="dialog">
                           <button
-                            onClick={() =>
-                              [handleConfirmReject(
+                            onClick={() => [
+                              handleConfirmReject(
                                 trainerDetails._id,
                                 "user",
                                 trainerDetails.email
                               ),
-                            sendEmail(trainerDetails?.name,trainerDetails?.email )]
-                            }
+                              sendEmail(
+                                trainerDetails?.name,
+                                trainerDetails?.email
+                              ),
+                            ]}
                             className="btn"
                           >
                             Reject

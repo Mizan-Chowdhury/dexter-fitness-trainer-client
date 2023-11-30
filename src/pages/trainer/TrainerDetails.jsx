@@ -3,13 +3,12 @@ import SectionTitle from "../../shared/SectionTitle";
 import { Helmet } from "react-helmet";
 
 const TrainerDetails = () => {
-  const { name, age, weekTime, dayTime, experience, skills, image, email, role } =
+  const {_id, name, age, weekTime, dayTime, experience, skills, image, email, role } =
     useLoaderData();
   const navigate = useNavigate();
 
   const hanldeNavigate = (slot) => {
-    console.log(slot);
-    navigate(`/trainerBooked/${slot}`, { state: { email } });
+    navigate(`/trainerBooked/${slot}`, { state: { _id } });
   };
 
   return (

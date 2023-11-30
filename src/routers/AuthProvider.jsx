@@ -47,18 +47,17 @@ const AuthProvider = ({ children }) => {
       const userEmail = currentUser?.email || user?.email;
       const loggedUser = { email: userEmail };
       setUser(currentUser);
-      setLoader(false);
       console.log(currentUser?.email);
       if (currentUser?.email) {
-        axiosPublic
-          .post("/jwt", loggedUser)
-          .then((res) => {
-            if (res.data.token) {
-              localStorage.setItem("access-token", res.data.token);
-            }
-          });
+        axiosPublic.post("/jwt", loggedUser).then((res) => {
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+            setLoader(false);
+          }
+        });
       } else {
         localStorage.removeItem("access-token");
+        setLoader(false);
       }
     });
     return () => {

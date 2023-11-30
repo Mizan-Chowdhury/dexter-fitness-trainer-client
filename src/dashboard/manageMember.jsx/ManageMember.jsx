@@ -4,6 +4,7 @@ import SectionTitle from "../../shared/SectionTitle";
 import useAuthContext from "../../hooks/useAuthContext";
 import emailjs from "@emailjs/browser";
 import { useRef } from "react";
+import toast from "react-hot-toast";
 
 const ManageMember = () => {
   const { user } = useAuthContext();
@@ -31,6 +32,7 @@ const ManageMember = () => {
       .then(
         (result) => {
           console.log(result);
+          toast.success("Successfully mailed.");
           e.target.reset();
         },
         (error) => {
@@ -61,8 +63,8 @@ const ManageMember = () => {
             {allMember?.map((i, index) => (
               <tr key={i._id}>
                 <td>{index + 1}</td>
-                <td>{i.userName}</td>
-                <td>{i.userEmail}</td>
+                <td>{i.user_name}</td>
+                <td>{i.user_email}</td>
                 <td>{i.slot_time}</td>
                 <td>
                   {/* You can open the modal using document.getElementById('ID').showModal() method */}
@@ -116,13 +118,6 @@ const ManageMember = () => {
                           className="textarea textarea-bordered w-full"
                           placeholder="Instructions"
                         ></textarea>
-
-                        {/* <label>Name</label>
-                        <input type="text" name="user_name" />
-                        <label>Email</label>
-                        <input type="email" name="user_email" />
-                        <label>Message</label>
-                        <textarea name="message" /> */}
                         <input
                           className="btn float-right mt-5"
                           type="submit"

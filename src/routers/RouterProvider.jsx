@@ -22,6 +22,9 @@ import PrivateAdmin from "./PrivateAdmin";
 import Error from "../pages/error/Error";
 import Slots from "../dashboard/manageSlots/Slots";
 import ManageMember from "../dashboard/manageMember.jsx/ManageMember";
+import Payment from "../dashboard/payment/Payment";
+import BookingPayment from "../pages/trainer/BookingPayment";
+import Balance from "../dashboard/balance/Balance";
 
 
 const Myrouter = createBrowserRouter([
@@ -68,6 +71,11 @@ const Myrouter = createBrowserRouter([
                 element: <PrivateRoute><TrainerBooked></TrainerBooked></PrivateRoute>,
             },
             {
+                path: '/bookingPayment/:id',
+                element: <PrivateRoute><BookingPayment></BookingPayment></PrivateRoute>,
+                loader: ({params})=> fetch(`http://localhost:5000/trainers/${params.id}`)
+            },
+            {
                 path:'/beATrainer',
                 element: <PrivateRoute><BeATrainer></BeATrainer></PrivateRoute>
             },
@@ -91,6 +99,14 @@ const Myrouter = createBrowserRouter([
                     {
                         path: 'newTrainers',
                         element: <PrivateAdmin><NewTrainers></NewTrainers></PrivateAdmin>
+                    },
+                    {
+                        path: 'payment/:day',
+                        element: <Payment></Payment>
+                    },
+                    {
+                        path: 'balance',
+                        element: <Balance></Balance>
                     },
                     {
                         path: 'forum',

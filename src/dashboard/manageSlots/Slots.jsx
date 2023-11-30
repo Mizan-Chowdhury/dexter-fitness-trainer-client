@@ -20,7 +20,7 @@ const Slots = () => {
     },
   });
   const item2 = slots?.result2?.map((i) => i.slot_time);
-  console.log(slots.result2);
+  console.log(slots?.result2);
 
   // const handleConfirmBook = (slot) => {
   //   const result = slots?.result2?.find((i) => i.slot_time === slot);
@@ -199,9 +199,9 @@ const Slots = () => {
             {slots?.result2?.map((i, index) => (
               <tr key={i._id}>
                 <td>{index + 1}</td>
-                <td>{i.userEmail}</td>
+                <td>{i.user_email}</td>
                 <td>{i.slot_time}</td>
-                <td>{i.pack_type}</td>
+                <td>{i.pack_name}</td>
                 <td className="space-x-5">
                   <button
                     onClick={() => handleConfirmReject(i._id, "member")}
@@ -212,7 +212,7 @@ const Slots = () => {
                   <button
                     onClick={() => [
                       handleConfirmReject(i._id, "reject"),
-                      sendEmail(i.userName, i.userEmail),
+                      sendEmail(i.user_name, i.user_email),
                     ]}
                     className="btn btn-sm"
                   >

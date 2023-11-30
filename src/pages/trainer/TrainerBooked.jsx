@@ -2,18 +2,25 @@ import SectionTitle from "../../shared/SectionTitle";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import useAuthContext from "../../hooks/useAuthContext";
-import toast from "react-hot-toast";
 
 const TrainerBooked = () => {
   const axiosSecure = useAxiosSecure();
-  const { user } = useAuthContext();
   const { time } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const trainerEmail = location.state.email;
+  const id = location.state._id;
+  console.log(id, time);
 
-
+  const hanldeNavigate = (data) => {
+    const trainerBookInfo = {
+      booking_id: data._id,
+      slot_time: time,
+      pack_name: data.type,
+      pack_price: data.price
+    };
+    console.log(trainerBookInfo);
+    navigate(`/bookingPayment/${id}`, { state: trainerBookInfo });
+  };
 
   const { data: packages } = useQuery({
     queryKey: ["bookingPlans"],
@@ -22,25 +29,6 @@ const TrainerBooked = () => {
       return res.data;
     },
   });
-
-  const hanldClassJoin = (data) => {
-    const trainerBook = {
-      booking_id: data._id,
-      slot_time: time,
-      pack_type: data.type,
-      userName : user.displayName,
-      userEmail: user?.email,
-      trainerEmail: trainerEmail,
-      role: 'user'
-    };
-    console.log(trainerBook);
-
-    axiosSecure.post("/bookingTrainer", trainerBook).then((res) => {
-      console.log(res);
-      toast.success("Successfully booked.");
-      navigate('/trainer');
-    });
-  };
 
   return (
     <div className="max-w-7xl mx-auto py-36">
@@ -55,6 +43,7 @@ const TrainerBooked = () => {
             </div>
             <div className="flex-grow p-4">
               <div>
+                <h1 className="font-bold mb-3">$<span className="text-3xl">{i.price}/</span>month</h1>
                 <h1 className="font-semibold">Classes :</h1>
                 <ul>
                   <li>{i.class[0]}</li>
@@ -72,9 +61,12 @@ const TrainerBooked = () => {
               </div>
             </div>
             <div className="px-4">
-            <button onClick={() => hanldClassJoin(i)} className="btn btn-outline w-full">
-              Join Now
-            </button>
+              <button
+                onClick={() => hanldeNavigate(i)}
+                className="btn btn-outline w-full"
+              >
+                Join Now
+              </button>
             </div>
           </div>
         ))}

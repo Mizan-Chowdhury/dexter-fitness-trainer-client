@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import SectionTitle from "../../shared/SectionTitle";
+import { Link, useNavigate } from "react-router-dom";
 
 const AllTrainers = () => {
   const axiosSecure = useAxiosSecure();
-
+  const navigate = useNavigate();
   const { data: AllTrainers } = useQuery({
     queryKey: ["allTrainers"],
     queryFn: async () => {
@@ -14,6 +15,10 @@ const AllTrainers = () => {
   });
 
   console.log(AllTrainers);
+  const hanldeNavigate = (day, email) => {
+    console.log(day, email);
+    navigate(`/dashboard/payment/${day}`, { state: { email } });
+  };
 
   return (
     <div className="lg:px-10">
@@ -40,8 +45,11 @@ const AllTrainers = () => {
                 <td>{i.name}</td>
                 <td>{i.email}</td>
                 <td>{i.payment}</td>
+                {/* <td>{i.joined_day}</td> */}
                 <td>
-                  <button className="btn btn-sm">Pay</button>
+                  {/* <Link to={`/dashboard/payment/${i.joined_day}`}> */}
+                    <button onClick={()=>hanldeNavigate(i.joined_day, i.email)} className="btn btn-sm">Pay</button>
+                  {/* </Link> */}
                 </td>
               </tr>
             ))}

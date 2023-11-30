@@ -4,9 +4,10 @@ import useAuthContext from "./useAuthContext";
 
 const useUsers = () => {
   const axiosSecure = useAxiosSecure();
-  const { user } = useAuthContext();
+  const { user, loader } = useAuthContext();
   const { data: users } = useQuery({
     queryKey: [user?.email, "users"],
+    enabled: loader,
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/${user?.email}`);
       return res?.data;
