@@ -124,9 +124,11 @@ const Navbar = () => {
                     </h1>
                     <ul className="menu menu-md">
                       {navList}
-                      <Navlist route={"/dashboard/subscribers"}>
-                        Dashboard
-                      </Navlist>
+                      <li>
+                        <Link onClick={handleLogOut} to={"/"}>
+                          <span>Logout</span>
+                        </Link>
+                      </li>
                     </ul>
                   </div>
                 </div>

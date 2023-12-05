@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'http://localhost:5000',
-})
+  baseURL: "https://dexter-fitness-trainer-server.vercel.app",
+});
 
 const useAxiosPublic = () => {
-    return instance
+  return instance;
 };
 
 export default useAxiosPublic;

@@ -20,7 +20,11 @@ const Slots = () => {
     },
   });
   const item2 = slots?.result2?.map((i) => i.slot_time);
-  console.log(slots?.result2);
+  // console.log(slots?.result2);
+  console.log(item2);
+  console.log(
+    slots?.result?.weekTime?.map((i, index) => item2.includes(i.slots))
+  );
 
   // const handleConfirmBook = (slot) => {
   //   const result = slots?.result2?.find((i) => i.slot_time === slot);
@@ -91,9 +95,9 @@ const Slots = () => {
   //   );
   // };
 
-  const handleConfirmReject = (id, role) => {
-    console.log(id, role);
-    axiosSecure.patch(`/bookingTrainer/${id}`, { role }).then((res) => {
+  const handleConfirmReject = (id, role, email) => {
+    console.log(id, role, email);
+    axiosSecure.patch(`/bookingTrainer/${id}`, { role, email }).then((res) => {
       console.log(res.data);
       toast.success(`Successfully maked ${role}`);
       refetch();
@@ -176,7 +180,8 @@ const Slots = () => {
               <tr key={i._id}>
                 <td>{index + 1}</td>
                 <td>{i.slots}</td>
-                <td>{item2[index] === i.slots ? "booked" : ""}</td>
+                <td>{item2.map((i2) => (i2 === i.slots ? "booked" : ""))}</td>
+                {/* <td>{item2.includes(i.slots) ? "booked" : ""}</td> */}
               </tr>
             ))}
           </tbody>
@@ -204,7 +209,7 @@ const Slots = () => {
                 <td>{i.pack_name}</td>
                 <td className="space-x-5">
                   <button
-                    onClick={() => handleConfirmReject(i._id, "member")}
+                    onClick={() => handleConfirmReject(i._id, "user", i.user_email)}
                     className="btn btn-sm"
                   >
                     Confirm

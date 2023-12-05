@@ -17,16 +17,15 @@ const ManageMember = () => {
     },
   });
 
-  const form = useRef();
 
   const sendEmail = (e) => {
+    console.log(e.target);
     e.preventDefault();
-    console.log(form.current);
     emailjs
       .sendForm(
         "service_y8qs7rp",
         "template_mvrqix9",
-        form.current,
+        e.target,
         "Zm9TaDnGdNC8JKFDC"
       )
       .then(
@@ -83,7 +82,7 @@ const ManageMember = () => {
                           ✕
                         </button>
                       </form>
-                      <form ref={form} onSubmit={sendEmail}>
+                      <form onSubmit={sendEmail}>
                         <label className="label">
                           <span className="label-text font-bold text-lg">
                             Member Name
@@ -109,7 +108,7 @@ const ManageMember = () => {
 
                         <label className="label">
                           <span className="label-text font-bold text-lg">
-                          Instructions
+                            Instructions
                           </span>
                         </label>
                         <textarea

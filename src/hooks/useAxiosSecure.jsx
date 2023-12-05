@@ -3,7 +3,7 @@ import useAuthContext from "./useAuthContext";
 import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://dexter-fitness-trainer-server.vercel.app",
 });
 const useAxiosSecure = () => {
   const { logOutUser } = useAuthContext();

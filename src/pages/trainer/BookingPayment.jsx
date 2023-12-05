@@ -27,7 +27,7 @@ const BookingPayment = () => {
       user_name: user?.displayName,
       user_email: user?.email,
       user_age: age,
-      role: "user",
+      role: "member",
     };
     console.log(paymentInfo);
     axiosSecure.post("/bookingTrainer", paymentInfo).then((res) => {
