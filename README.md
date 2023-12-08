@@ -3,8 +3,6 @@
 
 ## [ Live Site Link](https://assigments-de09b.web.app)
 
-Click here for the private repo: [https://assigments-de09b.web.app](https://assigments-de09b.web.app)
-
 ## Some Features of my project
 * I have created a Dexter Fitness Trainer. My website homepage has a navbar, banner, footer and some important sections. I made the navbar sticky.
 
@@ -17,4 +15,4 @@ And a sweet alert will show on the page when the user completes the registration
 
 * When the user completes the registration or login, his name and picture will be shown in the navbar. And he can go to private routes.
 
-* i have cretaed admin trainer and user dashboard.
+* I have cretaed admin trainer and user dashboard.
